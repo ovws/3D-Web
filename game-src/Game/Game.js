@@ -64,7 +64,9 @@ export class Game
 
         Game.instance = this
 
-        this.init()
+        this.init().catch(error => {
+            console.error('Game initialization failed:', error)
+        })
     }
 
     async init()
