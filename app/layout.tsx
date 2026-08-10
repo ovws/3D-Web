@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "文山木公 · OVWS",
+  title: "🚗",
   description:
     "文山木公 / OVWS 的交互式 3D 个人空间：自托管、Rime、AI 工具链与日常折腾。",
   other: {

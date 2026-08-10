@@ -19,12 +19,12 @@ export class TimeMachineArea extends Area
     {
         this.interactivePoint = this.game.interactivePoints.create(
             this.references.items.get('interactivePoint')[0].position,
-            '打开个人主页',
+            '项目源码',
             InteractivePoints.ALIGN_RIGHT,
             InteractivePoints.STATE_CONCEALED,
             () =>
             {
-                window.open('https://www.qiwensong.com/')
+                window.open('https://github.com/ovws/3D-Web')
             },
             () =>
             {

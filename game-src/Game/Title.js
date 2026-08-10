@@ -85,7 +85,7 @@ export class Title
             }
 
             
-            document.title = 'OVWS' + title.join('')
+            document.title = title.join('')
         }
     }
 }

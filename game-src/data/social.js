@@ -1,8 +1,7 @@
 export default [
     // The order is tied to the physical sculptures around the social plaza.
     { name: 'X / Twitter', url: 'https://x.com/wensqi', align: 'right' },
-    // Keep the original Bluesky slot so every remaining label stays on its sculpture.
-    { hidden: true },
+    { name: 'Bluesky', url: 'https://bsky.app/profile/mugou.pro', align: 'right' },
     { name: 'YouTube', url: 'https://www.youtube.com/@aixuer', align: 'right' },
     { name: 'Mail', url: 'mailto:work@qiwensong.com', align: 'right' },
     { name: 'Twitch', url: 'https://www.twitch.tv/cmiws', align: 'right' },

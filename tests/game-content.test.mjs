@@ -29,7 +29,7 @@ test("keeps every social label on its matching physical landmark", async () => {
   const builtScript = await readActiveGameBundle();
 
   assert.match(social, /name: 'X \/ Twitter', url: 'https:\/\/x\.com\/wensqi', align: 'right'/);
-  assert.match(social, /\{ hidden: true \}/);
+  assert.match(social, /name: 'Bluesky', url: 'https:\/\/bsky\.app\/profile\/mugou\.pro', align: 'right'/);
   assert.match(social, /name: 'YouTube', url: 'https:\/\/www\.youtube\.com\/@aixuer', align: 'right'/);
   assert.match(social, /name: 'Mail', url: 'mailto:work@qiwensong\.com', align: 'right'/);
   assert.match(social, /name: 'Twitch', url: 'https:\/\/www\.twitch\.tv\/cmiws', align: 'right'/);
