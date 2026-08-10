@@ -1,10 +1,12 @@
 export default [
+    // The order is tied to the physical sculptures around the social plaza.
+    { name: 'X / Twitter', url: 'https://x.com/wensqi', align: 'right' },
+    // Keep the original Bluesky slot so every remaining label stays on its sculpture.
+    { hidden: true },
+    { name: 'YouTube', url: 'https://www.youtube.com/@aixuer', align: 'right' },
+    { name: 'Mail', url: 'mailto:work@qiwensong.com', align: 'right' },
+    { name: 'Twitch', url: 'https://www.twitch.tv/cmiws', align: 'right' },
     { name: 'GitHub', url: 'https://github.com/ovws', align: 'right' },
-    { name: '博客', url: 'https://blog.loser.dev/', align: 'right' },
-    { name: '主页', url: 'https://www.qiwensong.com/', align: 'right' },
-    { name: '图库', url: 'https://ovws.github.io/Gallery-Yan/', align: 'right' },
-    { name: 'X', url: 'https://x.com/qwstdx', align: 'left' },
-    { name: '知乎', url: 'https://www.zhihu.com/people/tdws', align: 'left' },
-    { name: '备用 GitHub', url: 'https://github.com/wikiq', align: 'left' },
-    { name: '联系我', modal: 'contact', align: 'left' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/qiws', align: 'left' },
+    { name: 'Discord', modal: 'contact', align: 'left' },
 ]

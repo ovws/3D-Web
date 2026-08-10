@@ -16,13 +16,13 @@ const text = `
 ╚═══════════════════════╝
 
 ╔═ Links ═══════════════╗
-║ Home    ⇒ https://www.qiwensong.com/
-║ Blog    ⇒ https://blog.loser.dev/
-║ Mail    ⇒ work@qiwensong.com
-║ GitHub  ⇒ https://github.com/ovws
-║ X       ⇒ https://x.com/qwstdx
-║ Zhihu   ⇒ https://www.zhihu.com/people/tdws
-║ Gallery ⇒ https://ovws.github.io/Gallery-Yan/
+║ X / Twitter ⇒ https://x.com/wensqi
+║ YouTube     ⇒ https://www.youtube.com/@aixuer
+║ Mail        ⇒ work@qiwensong.com
+║ Twitch      ⇒ https://www.twitch.tv/cmiws
+║ GitHub      ⇒ https://github.com/ovws
+║ LinkedIn    ⇒ https://www.linkedin.com/in/qiws
+║ Discord     ⇒ ws.qi
 ╚═══════════════════════╝
 
 ╔═ Current focus ═══════╗

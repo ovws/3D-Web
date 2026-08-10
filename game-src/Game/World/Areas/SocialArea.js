@@ -34,11 +34,16 @@ export class SocialArea extends Area
     setLinks()
     {
         const radius = 6
-        let i = 0
+        const slotCount = socialData.length
 
-        for(const link of socialData)
+        for(const [ index, link ] of socialData.entries())
         {
-            const angle = i * Math.PI / (socialData.length - 1)
+            // Each entry occupies a fixed spot in the plaza. Hidden entries still
+            // reserve their spot so a missing account never shifts other labels.
+            if(link.hidden)
+                continue
+
+            const angle = index * Math.PI / (slotCount - 1)
             const position = this.center.clone()
             position.x += Math.cos(angle) * radius
             position.y = 1
@@ -70,7 +75,6 @@ export class SocialArea extends Area
                 }
             )
             
-            i++
         }
     }
 

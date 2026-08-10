@@ -13,6 +13,44 @@ test("ships personalized portfolio content", async () => {
   assert.doesNotMatch(html, /Bruno's Home|simon\.bruno\.77@gmail\.com/);
 });
 
+test("keeps every social label on its matching physical landmark", async () => {
+  const social = await readFile(new URL("game-src/data/social.js", root), "utf8");
+  const socialArea = await readFile(new URL("game-src/Game/World/Areas/SocialArea.js", root), "utf8");
+  const html = await readFile(new URL("public/game/index.html", root), "utf8");
+  const scriptPath = html.match(/src="\.\/(assets\/index-[^"]+\.js)"/)?.[1];
+  assert.ok(scriptPath);
+  const builtScript = await readFile(new URL(`public/game/${scriptPath}`, root), "utf8");
+
+  assert.match(social, /name: 'X \/ Twitter', url: 'https:\/\/x\.com\/wensqi', align: 'right'/);
+  assert.match(social, /\{ hidden: true \}/);
+  assert.match(social, /name: 'YouTube', url: 'https:\/\/www\.youtube\.com\/@aixuer', align: 'right'/);
+  assert.match(social, /name: 'Mail', url: 'mailto:work@qiwensong\.com', align: 'right'/);
+  assert.match(social, /name: 'Twitch', url: 'https:\/\/www\.twitch\.tv\/cmiws', align: 'right'/);
+  assert.match(social, /name: 'GitHub', url: 'https:\/\/github\.com\/ovws', align: 'right'/);
+  assert.match(social, /name: 'LinkedIn', url: 'https:\/\/www\.linkedin\.com\/in\/qiws', align: 'left'/);
+  assert.match(social, /name: 'Discord', modal: 'contact', align: 'left'/);
+  assert.match(socialArea, /for\(const \[ index, link \] of socialData\.entries\(\)\)/);
+  assert.match(socialArea, /if\(link\.hidden\)\s+continue/);
+  assert.match(socialArea, /const angle = index \* Math\.PI \/ \(slotCount - 1\)/);
+
+  for (const [label, target] of [
+    ["X / Twitter", "https://x.com/wensqi"],
+    ["YouTube", "https://www.youtube.com/@aixuer"],
+    ["Mail", "mailto:work@qiwensong.com"],
+    ["Twitch", "https://www.twitch.tv/cmiws"],
+    ["GitHub", "https://github.com/ovws"],
+    ["LinkedIn", "https://www.linkedin.com/in/qiws"],
+  ]) {
+    assert.ok(social.includes(`name: '${label}'`));
+    assert.ok(social.includes(target));
+    assert.ok(builtScript.includes(target));
+  }
+
+  assert.match(social, /name: 'Discord', modal: 'contact'/);
+  assert.match(html, /Discord 用户名：<strong>ws\.qi<\/strong>/);
+  assert.doesNotMatch(social, /blog\.loser\.dev|github\.com\/wikiq|x\.com\/qwstdx/);
+});
+
 test("ships both map themes and a non-lazy map texture", async () => {
   const html = await readFile(new URL("public/game/index.html", root), "utf8");
   const mapSource = await readFile(new URL("game-src/Game/Map.js", root), "utf8");
