@@ -51,7 +51,7 @@ export class Map
             { name: '主页', respawnName: 'landing', offset: { x: 0.02, y: 0 } },
             { name: '项目', respawnName: 'projects', offset: { x: 0, y: -0.02 } },
             { name: '常用链接', respawnName: 'social', offset: { x: -0.01, y: -0.04 } },
-            { name: '项目源码', respawnName: 'timeMachine', offset: { x: 0, y: 0 } },
+            { name: '时空跃迁', respawnName: 'timeMachine', offset: { x: 0, y: 0 } },
         ]
 
         for(const item of this.locations.items)

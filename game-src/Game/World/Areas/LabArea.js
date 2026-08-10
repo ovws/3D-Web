@@ -465,7 +465,8 @@ export class LabArea extends Area
                 resource = {}
                 resource.loaded = false
 
-                const loader = this.game.resourcesLoader.getLoader('textureKtx')
+                const isKtx = key.endsWith('.ktx') || key.endsWith('.basis')
+                const loader = this.game.resourcesLoader.getLoader(isKtx ? 'textureKtx' : 'texture')
 
                 loader.load(
                     path,

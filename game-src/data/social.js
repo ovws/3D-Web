@@ -5,7 +5,7 @@ export default [
     { name: 'YouTube', url: 'https://www.youtube.com/@aixuer', align: 'right' },
     { name: 'Mail', url: 'mailto:work@qiwensong.com', align: 'right' },
     { name: 'Twitch', url: 'https://www.twitch.tv/cmiws', align: 'right' },
-    { name: 'GitHub', url: 'https://github.com/ovws', align: 'right' },
+    { name: 'Hey', url: 'https://www.qiwensong.com/', align: 'right' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/qiws', align: 'left' },
     { name: 'Discord', modal: 'contact', align: 'left' },
 ]

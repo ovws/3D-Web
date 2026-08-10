@@ -9,6 +9,9 @@ export default ({ command }) => ({
     envDir: './',
     publicDir: command === 'serve' ? '../public/game/' : false,
     base: './',
+    css: {
+        postcss: {},
+    },
     server: {
         host: true,
         open: false,

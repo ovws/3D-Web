@@ -17,14 +17,46 @@ export class TimeMachineArea extends Area
 
     setInteractivePoint()
     {
+        const teleportLocations = [
+            { name: '主页', respawn: 'landing' },
+            { name: '项目展示', respawn: 'projects' },
+            { name: '实验室', respawn: 'lab' },
+            { name: '我的旅程', respawn: 'career' },
+            { name: '常用链接', respawn: 'social' },
+            { name: '保龄球场', respawn: 'bowling' },
+            { name: '曲奇小站', respawn: 'cookie' },
+            { name: '神秘祭坛', respawn: 'altar' },
+            { name: '成就墙', respawn: 'achievements' },
+            { name: '幕后花絮', respawn: 'behindTheScene' }
+        ]
+
         this.interactivePoint = this.game.interactivePoints.create(
             this.references.items.get('interactivePoint')[0].position,
-            '项目源码',
+            '时空跃迁',
             InteractivePoints.ALIGN_RIGHT,
             InteractivePoints.STATE_CONCEALED,
             () =>
             {
-                window.open('https://github.com/ovws/3D-Web')
+                const choice = teleportLocations[Math.floor(Math.random() * teleportLocations.length)]
+                
+                const clickSound = this.game.audio.groups.get('click')
+                if(clickSound)
+                    clickSound.play(true)
+
+                const html = `
+                    <div class="top">
+                        <div class="title">🌀 时空跃迁</div>
+                    </div>
+                    <div class="bottom">
+                        <div class="description">穿越成功！目的地：【${choice.name}】</div>
+                    </div>
+                `
+                this.game.notifications.show(html, 'teleport', 3)
+
+                this.game.player.respawn(choice.respawn, () =>
+                {
+                    this.game.view.focusPoint.isTracking = true
+                })
             },
             () =>
             {

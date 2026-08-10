@@ -33,7 +33,7 @@ test("keeps every social label on its matching physical landmark", async () => {
   assert.match(social, /name: 'YouTube', url: 'https:\/\/www\.youtube\.com\/@aixuer', align: 'right'/);
   assert.match(social, /name: 'Mail', url: 'mailto:work@qiwensong\.com', align: 'right'/);
   assert.match(social, /name: 'Twitch', url: 'https:\/\/www\.twitch\.tv\/cmiws', align: 'right'/);
-  assert.match(social, /name: 'GitHub', url: 'https:\/\/github\.com\/ovws', align: 'right'/);
+  assert.match(social, /name: 'Hey', url: 'https:\/\/www\.qiwensong\.com\/', align: 'right'/);
   assert.match(social, /name: 'LinkedIn', url: 'https:\/\/www\.linkedin\.com\/in\/qiws', align: 'left'/);
   assert.match(social, /name: 'Discord', modal: 'contact', align: 'left'/);
   assert.match(socialArea, /for\(const \[ index, link \] of socialData\.entries\(\)\)/);
@@ -45,7 +45,7 @@ test("keeps every social label on its matching physical landmark", async () => {
     ["YouTube", "https://www.youtube.com/@aixuer"],
     ["Mail", "mailto:work@qiwensong.com"],
     ["Twitch", "https://www.twitch.tv/cmiws"],
-    ["GitHub", "https://github.com/ovws"],
+    ["Hey", "https://www.qiwensong.com/"],
     ["LinkedIn", "https://www.linkedin.com/in/qiws"],
   ]) {
     assert.ok(social.includes(`name: '${label}'`));
