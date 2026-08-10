@@ -64,7 +64,7 @@ export class Game
 
         Game.instance = this
 
-        this.ready = this.init()
+        this.init()
     }
 
     async init()

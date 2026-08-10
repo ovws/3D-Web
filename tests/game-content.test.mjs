@@ -6,13 +6,7 @@ const root = new URL("../", import.meta.url);
 
 async function readActiveGameBundle() {
   const html = await readFile(new URL("public/game/index.html", root), "utf8");
-  const directScriptPath = html.match(/src="\.\/assets\/(index-[^"]+\.js)"/)?.[1];
-  const guard = await readFile(
-    new URL("public/game/assets/graphics-guard.js", root),
-    "utf8",
-  );
-  const guardedScriptPath = guard.match(/import\('\.\/(index-[^']+\.js)'\)/)?.[1];
-  const scriptPath = directScriptPath ?? guardedScriptPath;
+  const scriptPath = html.match(/src="\.\/assets\/(index-[^"]+\.js)"/)?.[1];
 
   assert.ok(scriptPath);
 
@@ -64,30 +58,21 @@ test("keeps every social label on its matching physical landmark", async () => {
   assert.doesNotMatch(social, /blog\.loser\.dev|github\.com\/wikiq|x\.com\/qwstdx/);
 });
 
-test("shows a usable fallback when the 3D renderer cannot start", async () => {
+test("starts the 3D scene at the top level without a capability gate", async () => {
   const page = await readFile(new URL("app/page.tsx", root), "utf8");
+  const nextConfig = await readFile(new URL("next.config.ts", root), "utf8");
   const entry = await readFile(new URL("game-src/index.js", root), "utf8");
-  const game = await readFile(new URL("game-src/Game/Game.js", root), "utf8");
-  const style = await readFile(new URL("game-src/style/general.styl", root), "utf8");
   const html = await readFile(new URL("public/game/index.html", root), "utf8");
-  const guard = await readFile(
-    new URL("public/game/assets/graphics-guard.js", root),
-    "utf8",
-  );
 
-  assert.match(page, /setGraphicsAvailable\(hasWebGpu \|\| hasWebGl2\)/);
-  assert.doesNotMatch(page, /hasWebGl\s*=/);
-  assert.match(page, /ovws-game-startup-error/);
-  assert.match(page, /graphicsAvailable === true/);
-  assert.match(entry, /const hasWebGL2 = Boolean\(probe\.getContext\('webgl2'\)\)/);
-  assert.match(entry, /game\.ready\.catch\(showStartupError\)/);
-  assert.match(entry, /window\.parent\.postMessage\(\{ type: 'ovws-game-startup-error' \}/);
-  assert.match(game, /this\.ready = this\.init\(\)/);
-  assert.match(style, /\.startup-error/);
-  assert.match(html, /assets\/graphics-guard\.js/);
-  assert.match(guard, /Boolean\(probe\.getContext\('webgl2'\)\)/);
-  assert.match(guard, /import\('\.\/index-BSIXIL5J\.js'\)\.catch\(showStartupError\)/);
-  assert.match(guard, /unhandledrejection/);
+  assert.match(nextConfig, /source: "\/"/);
+  assert.match(nextConfig, /destination: "\/game\/index\.html"/);
+  assert.match(page, /redirect\("\/game\/index\.html"\)/);
+  assert.doesNotMatch(page, /<iframe|graphicsAvailable|graphics-fallback/);
+  assert.doesNotMatch(entry, /supports3DRenderer|showStartupError|game\.ready\.catch/);
+  assert.match(entry, /window\.game = new Game\(\)/);
+  assert.match(html, /<base href="\/game\/">/);
+  assert.match(html, /src="\.\/assets\/index-BSIXIL5J\.js"/);
+  assert.doesNotMatch(html, /graphics-guard/);
 });
 
 test("ships both map themes and a non-lazy map texture", async () => {
