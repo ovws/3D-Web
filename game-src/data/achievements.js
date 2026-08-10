@@ -1,0 +1,214 @@
+import labData from './lab.js'
+import projectsData from './projects.js'
+
+export default
+[
+    [
+        'landingLeave',
+        '出发去冒险！',
+        '离开出生区域。',
+        1
+    ],
+    [
+        'areas',
+        '旅行者',
+        '到访每一个区域。',
+        12,
+        true // Unique
+    ],
+    [
+        'projects',
+        '你会修 Wi-Fi 吗？',
+        '查看<strong>项目</strong>区域中的所有项目。',
+        projectsData.length,
+        true // Unique
+    ],
+    [
+        'lab',
+        '我也是个科学家',
+        '查看<strong>实验室</strong>中的所有作品。',
+        labData.length,
+        true // Unique
+    ],
+    [
+        'cookie',
+        '烤箱预热',
+        '接受 <strong>1</strong> 块曲奇。',
+        1
+    ],
+    [
+        'cookie',
+        '面团越做越大',
+        '接受 <strong>10</strong> 块曲奇。',
+        10
+    ],
+    [
+        'cookie',
+        '烤过头了',
+        '接受 <strong>100</strong> 块曲奇。',
+        100
+    ],
+    [
+        'cookie',
+        '曲奇点击器',
+        '接受 <strong>1000</strong> 块曲奇。',
+        1000
+    ],
+    [
+        'sea',
+        '海底世界',
+        '去和鱼儿交个朋友。',
+        1
+    ],
+    [
+        'upsideDown',
+        '四脚朝天',
+        '让车辆翻个底朝天。',
+        1
+    ],
+    [
+        'frontFlip',
+        '车头先着地',
+        '完成前空翻并四轮着地。',
+        1
+    ],
+    [
+        'backFlip',
+        '信仰之翻',
+        '完成后空翻并四轮着地。',
+        1
+    ],
+    [
+        'suspensions',
+        '低趴玩家',
+        '使用车辆的四个液压悬挂。',
+        4
+    ],
+    [
+        'honk',
+        '滴滴',
+        '鸣笛 <strong>10</strong> 次。',
+        10
+    ],
+    [
+        'explosiveCrates',
+        '爆炸就是艺术',
+        '引爆所有爆炸箱。',
+        20,
+        true // Unique
+    ],
+    [
+        'goHigh',
+        '天高任我行',
+        '到达 <strong>15 米</strong> 高空。',
+        15
+    ],
+    [
+        'strike',
+        '走，打保龄球',
+        '完成一次全中。',
+        1
+    ],
+    [
+        'toiletDown',
+        '请勿打扰',
+        '撞倒旱厕。',
+        1
+    ],
+    [
+        'fullDay',
+        '你不上班吗？',
+        '连续度过一个完整昼夜。',
+        1
+    ],
+    [
+        'distanceDriven',
+        '小试牛刀',
+        '行驶 1 公里。',
+        1
+    ],
+    [
+        'distanceDriven',
+        '到了没有？',
+        '行驶 10 公里。',
+        10
+    ],
+    [
+        'distanceDriven',
+        '我回来了！',
+        '行驶 100 公里。',
+        100
+    ],
+    [
+        'sacrifice',
+        '献给混沌之神',
+        '把自己献祭到祭坛。',
+        1
+    ],
+    [
+        'cataclysm',
+        '见证我！',
+        '见证一次天灾。',
+        1
+    ],
+    [
+        'weatherSnow',
+        '一起堆雪人吗？',
+        '见证一场雪。',
+        1
+    ],
+    [
+        'weatherRain',
+        '雨中高歌',
+        '见证一场雨。',
+        1
+    ],
+    [
+        'lightning',
+        '1.21 吉瓦！',
+        '被闪电击中。',
+        1
+    ],
+    [
+        'waterfall',
+        '玩家直觉',
+        '你以为里面有宝藏？',
+        1
+    ],
+    [
+        'fan',
+        '你是我唯一的风扇',
+        '生成一台风扇。',
+        1
+    ],
+    [
+        'reset',
+        '收拾房间',
+        '将所有东西放回原位。',
+        1
+    ],
+    [
+        'statueDown',
+        '革命！',
+        '推倒那座雕像。',
+        1
+    ],
+    [
+        'konami',
+        '上上下下……',
+        '剩下的你知道。',
+        1
+    ],
+    [
+        'debug',
+        '不是故障，是功能',
+        '打开调试界面。',
+        1
+    ],
+    [
+        'hacker',
+        '黑客',
+        '这个成就无法完成。',
+        1
+    ],
+]
