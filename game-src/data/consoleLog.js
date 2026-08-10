@@ -20,7 +20,7 @@ const text = `
 ║ YouTube     ⇒ https://www.youtube.com/@aixuer
 ║ Mail        ⇒ work@qiwensong.com
 ║ Twitch      ⇒ https://www.twitch.tv/cmiws
-║ Hey         ⇒ https://www.qiwensong.com/
+║ GitHub      ⇒ https://github.com/ovws
 ║ LinkedIn    ⇒ https://www.linkedin.com/in/qiws
 ║ Discord     ⇒ ws.qi
 ╚═══════════════════════╝
