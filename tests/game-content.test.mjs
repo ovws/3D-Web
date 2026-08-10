@@ -4,6 +4,21 @@ import test from "node:test";
 
 const root = new URL("../", import.meta.url);
 
+async function readActiveGameBundle() {
+  const html = await readFile(new URL("public/game/index.html", root), "utf8");
+  const directScriptPath = html.match(/src="\.\/assets\/(index-[^"]+\.js)"/)?.[1];
+  const guard = await readFile(
+    new URL("public/game/assets/graphics-guard.js", root),
+    "utf8",
+  );
+  const guardedScriptPath = guard.match(/import\('\.\/(index-[^']+\.js)'\)/)?.[1];
+  const scriptPath = directScriptPath ?? guardedScriptPath;
+
+  assert.ok(scriptPath);
+
+  return readFile(new URL(`public/game/assets/${scriptPath}`, root), "utf8");
+}
+
 test("ships personalized portfolio content", async () => {
   const html = await readFile(new URL("public/game/index.html", root), "utf8");
 
@@ -17,9 +32,7 @@ test("keeps every social label on its matching physical landmark", async () => {
   const social = await readFile(new URL("game-src/data/social.js", root), "utf8");
   const socialArea = await readFile(new URL("game-src/Game/World/Areas/SocialArea.js", root), "utf8");
   const html = await readFile(new URL("public/game/index.html", root), "utf8");
-  const scriptPath = html.match(/src="\.\/(assets\/index-[^"]+\.js)"/)?.[1];
-  assert.ok(scriptPath);
-  const builtScript = await readFile(new URL(`public/game/${scriptPath}`, root), "utf8");
+  const builtScript = await readActiveGameBundle();
 
   assert.match(social, /name: 'X \/ Twitter', url: 'https:\/\/x\.com\/wensqi', align: 'right'/);
   assert.match(social, /\{ hidden: true \}/);
@@ -49,6 +62,32 @@ test("keeps every social label on its matching physical landmark", async () => {
   assert.match(social, /name: 'Discord', modal: 'contact'/);
   assert.match(html, /Discord 用户名：<strong>ws\.qi<\/strong>/);
   assert.doesNotMatch(social, /blog\.loser\.dev|github\.com\/wikiq|x\.com\/qwstdx/);
+});
+
+test("shows a usable fallback when the 3D renderer cannot start", async () => {
+  const page = await readFile(new URL("app/page.tsx", root), "utf8");
+  const entry = await readFile(new URL("game-src/index.js", root), "utf8");
+  const game = await readFile(new URL("game-src/Game/Game.js", root), "utf8");
+  const style = await readFile(new URL("game-src/style/general.styl", root), "utf8");
+  const html = await readFile(new URL("public/game/index.html", root), "utf8");
+  const guard = await readFile(
+    new URL("public/game/assets/graphics-guard.js", root),
+    "utf8",
+  );
+
+  assert.match(page, /setGraphicsAvailable\(hasWebGpu \|\| hasWebGl2\)/);
+  assert.doesNotMatch(page, /hasWebGl\s*=/);
+  assert.match(page, /ovws-game-startup-error/);
+  assert.match(page, /graphicsAvailable === true/);
+  assert.match(entry, /const hasWebGL2 = Boolean\(probe\.getContext\('webgl2'\)\)/);
+  assert.match(entry, /game\.ready\.catch\(showStartupError\)/);
+  assert.match(entry, /window\.parent\.postMessage\(\{ type: 'ovws-game-startup-error' \}/);
+  assert.match(game, /this\.ready = this\.init\(\)/);
+  assert.match(style, /\.startup-error/);
+  assert.match(html, /assets\/graphics-guard\.js/);
+  assert.match(guard, /Boolean\(probe\.getContext\('webgl2'\)\)/);
+  assert.match(guard, /import\('\.\/index-BSIXIL5J\.js'\)\.catch\(showStartupError\)/);
+  assert.match(guard, /unhandledrejection/);
 });
 
 test("ships both map themes and a non-lazy map texture", async () => {
@@ -91,10 +130,7 @@ test("removes Circuit, Leave a Whisper, and remote backend connections", async (
 
 test("renders 文山木公 as the physical Home lettering", async () => {
   const landing = await readFile(new URL("game-src/Game/World/Areas/LandingArea.js", root), "utf8");
-  const html = await readFile(new URL("public/game/index.html", root), "utf8");
-  const scriptPath = html.match(/src="\.\/(assets\/index-[^"]+\.js)"/)?.[1];
-  assert.ok(scriptPath);
-  const builtScript = await readFile(new URL(`public/game/${scriptPath}`, root), "utf8");
+  const builtScript = await readActiveGameBundle();
   const commonFont = await stat(new URL("public/game/fonts/NotoSansSC-118-wght-normal.woff2", root));
   const mountainFont = await stat(new URL("public/game/fonts/NotoSansSC-116-wght-normal.woff2", root));
   const woodFont = await stat(new URL("public/game/fonts/NotoSansSC-114-wght-normal.woff2", root));

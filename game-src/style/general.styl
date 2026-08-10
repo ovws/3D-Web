@@ -56,6 +56,27 @@ html
     @media only screen and (max-width 440px)
         font-size 16px;
 
+.startup-error
+    position fixed
+    inset 0
+    z-index 9999
+    display grid
+    place-content center
+    padding 32px
+    color #fff8f3
+    background radial-gradient(farthest-side at 0 0, #2b2330, #1d1721)
+    text-align center
+
+    h1
+        margin-bottom 12px
+        font-size clamp(28px, 5vw, 52px)
+
+    p
+        max-width 460px
+        color alpha(#fff8f3, 0.78)
+        font-size clamp(15px, 2vw, 20px)
+        line-height 1.6
+
 ul
 ol
     padding-left 25px
