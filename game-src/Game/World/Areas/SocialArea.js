@@ -208,9 +208,7 @@ export class SocialArea extends Area
             InteractivePoints.ALIGN_RIGHT,
             () =>
             {
-                const onlyFansWindow = window.open(onlyFansUrl, '_blank', 'noopener,noreferrer')
-                if(!onlyFansWindow)
-                    window.location.assign(onlyFansUrl)
+                window.open(onlyFansUrl, '_blank', 'noopener,noreferrer')
             }
         )
 
