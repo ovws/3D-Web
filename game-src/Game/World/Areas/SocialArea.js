@@ -175,31 +175,53 @@ export class SocialArea extends Area
 
     setOnlyFans()
     {
-        const interactiveArea = this.game.interactivePoints.create(
-            this.references.items.get('onlyFans')[0].position,
-            '唯一风扇',
-            InteractivePoints.ALIGN_RIGHT,
-            InteractivePoints.STATE_CONCEALED,
-            () =>
-            {
-                // Keep the original fan-dropping interaction and open the OnlyFans profile.
-                this.fans.pop()
+        const onlyFansPosition = this.references.items.get('onlyFans')[0].position
+        const onlyFansUrl = 'https://onlyfans.com/wensqi'
 
-                const onlyFansWindow = window.open('https://onlyfans.com/wensqi', '_blank', 'noopener,noreferrer')
+        const createInteractivePoint = (position, label, align, interactCallback) =>
+        {
+            this.game.interactivePoints.create(
+                position,
+                label,
+                align,
+                InteractivePoints.STATE_CONCEALED,
+                interactCallback,
+                () =>
+                {
+                    this.game.inputs.interactiveButtons.addItems(['interact'])
+                },
+                () =>
+                {
+                    this.game.inputs.interactiveButtons.removeItems(['interact'])
+                },
+                () =>
+                {
+                    this.game.inputs.interactiveButtons.removeItems(['interact'])
+                }
+            )
+        }
+
+        // The new profile link sits beside the original fan-drop interaction.
+        createInteractivePoint(
+            onlyFansPosition.clone().add(new THREE.Vector3(-1.25, 0, 0)),
+            'OnlyFans',
+            InteractivePoints.ALIGN_RIGHT,
+            () =>
+            {
+                const onlyFansWindow = window.open(onlyFansUrl, '_blank', 'noopener,noreferrer')
                 if(!onlyFansWindow)
-                    window.location.assign('https://onlyfans.com/wensqi')
-            },
+                    window.location.assign(onlyFansUrl)
+            }
+        )
+
+        // Keep the original interaction as its own selectable point.
+        createInteractivePoint(
+            onlyFansPosition.clone(),
+            '掉落风扇',
+            InteractivePoints.ALIGN_LEFT,
             () =>
             {
-                this.game.inputs.interactiveButtons.addItems(['interact'])
-            },
-            () =>
-            {
-                this.game.inputs.interactiveButtons.removeItems(['interact'])
-            },
-            () =>
-            {
-                this.game.inputs.interactiveButtons.removeItems(['interact'])
+                this.fans.pop()
             }
         )
     }
