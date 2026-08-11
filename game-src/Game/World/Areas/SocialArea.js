@@ -182,9 +182,12 @@ export class SocialArea extends Area
             InteractivePoints.STATE_CONCEALED,
             () =>
             {
-                // Keep the original fan-dropping interaction and also open the OnlyFans profile.
+                // Keep the original fan-dropping interaction and open the OnlyFans profile.
                 this.fans.pop()
-                window.open('https://onlyfans.com/wensqi', '_blank')
+
+                const onlyFansWindow = window.open('https://onlyfans.com/wensqi', '_blank', 'noopener,noreferrer')
+                if(!onlyFansWindow)
+                    window.location.assign('https://onlyfans.com/wensqi')
             },
             () =>
             {
